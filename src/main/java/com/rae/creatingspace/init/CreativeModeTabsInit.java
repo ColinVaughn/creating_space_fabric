@@ -6,8 +6,6 @@ import com.rae.creatingspace.init.ingameobject.FluidInit;
 import com.rae.creatingspace.init.ingameobject.ItemInit;
 import com.rae.creatingspace.server.armor.OxygenBacktankUtil;
 import com.simibubi.create.AllCreativeModeTabs;
-import com.simibubi.create.AllItems;
-import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import it.unimi.dsi.fastutil.objects.Reference2ReferenceOpenHashMap;
 import net.minecraft.core.registries.Registries;
@@ -114,6 +112,9 @@ public class CreativeModeTabsInit {
                         output.accept(BlockInit.MOON_STONE);
                         output.accept(BlockInit.MOON_REGOLITH);
                         output.accept(BlockInit.MOON_SURFACE_REGOLITH);
+                        output.accept(BlockInit.MARS_STONE);
+                        output.accept(BlockInit.MARS_REGOLITH);
+                        output.accept(BlockInit.MARS_SURFACE_REGOLITH);
                         output.accept(BlockInit.NICKEL_ORE);
                         output.accept(BlockInit.DEEPSLATE_NICKEL_ORE);
                         output.accept(BlockInit.MOON_NICKEL_ORE);

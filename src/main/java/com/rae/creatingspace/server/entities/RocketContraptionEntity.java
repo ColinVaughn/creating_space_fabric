@@ -12,7 +12,6 @@ import com.simibubi.create.content.contraptions.StructureTransform;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -409,9 +408,5 @@ public class RocketContraptionEntity extends AbstractContraptionEntity {
     }
     public float getSpeed() {
         return this.entityData.get(SPEED_ENTITY_DATA_ACCESSOR);
-    }
-    @Override
-    protected void outOfWorld() {
-        //super.outOfWorld();
     }
 }

@@ -1,6 +1,5 @@
 package com.rae.creatingspace.init.ingameobject;
 
-import com.rae.creatingspace.init.CreativeModeTabsInit;
 import com.rae.creatingspace.init.graphics.SpriteShiftInit;
 import com.rae.creatingspace.server.armor.OxygenBacktankBlock;
 import com.rae.creatingspace.server.blocks.*;
@@ -29,7 +28,6 @@ import static com.rae.creatingspace.CreatingSpace.REGISTRATE;
 import static com.simibubi.create.AllMovementBehaviours.movementBehaviour;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.*;
-import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
 
 public class BlockInit {
 
@@ -50,26 +48,24 @@ public class BlockInit {
             .build()
             .register();
 
-    public static final BlockEntry<Block> MOON_STONE = REGISTRATE
-            .block("moon_stone",Block::new).initialProperties(()-> Blocks.STONE)
-            .properties(p-> p.strength(1.0f).requiresCorrectToolForDrops())
-            .item()
-            .transform(customItemModel())
-            .register();
+    public static BlockEntry<Block> registerSpaceBlock(String name, Block baseBlock) {
+        return REGISTRATE
+                .block(name, Block::new).initialProperties(() -> baseBlock)
+                .properties(p -> p.strength(1.0f))
+                .item()
+                .transform(customItemModel())
+                .register();
+    }
 
-    public static final BlockEntry<Block> MOON_REGOLITH = REGISTRATE
-            .block("moon_regolith",Block::new).initialProperties(()-> Blocks.DIRT)
-            .properties(p-> p.strength(1.0f))
-            .item()
-            .transform(customItemModel())
-            .register();
+    public static final BlockEntry<Block> MOON_STONE = registerSpaceBlock("moon_stone", Blocks.STONE);
+    public static final BlockEntry<Block> MOON_REGOLITH = registerSpaceBlock("moon_regolith", Blocks.DIRT);
+    public static final BlockEntry<Block> MOON_SURFACE_REGOLITH = registerSpaceBlock("moon_surface_regolith", Blocks.DIRT);
 
-    public static final BlockEntry<Block> MOON_SURFACE_REGOLITH = REGISTRATE
-            .block("moon_surface_regolith",Block::new).initialProperties(()-> Blocks.DIRT)
-            .properties(p-> p.strength(1.0f))
-            .item()
-            .transform(customItemModel())
-            .register();
+    public static final BlockEntry<Block> MARS_STONE = registerSpaceBlock("mars_stone", Blocks.STONE);
+    public static final BlockEntry<Block> MARS_REGOLITH = registerSpaceBlock("mars_regolith", Blocks.DIRT);
+    public static final BlockEntry<Block> MARS_SURFACE_REGOLITH = registerSpaceBlock("mars_surface_regolith", Blocks.DIRT);
+
+
 
 
     //ores
