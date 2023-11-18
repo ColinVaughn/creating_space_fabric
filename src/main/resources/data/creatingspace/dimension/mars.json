@@ -2,10 +2,10 @@
   "type": "creatingspace:mars",
   "generator": {
     "type": "minecraft:noise",
-    "settings": "creatingspace:moon_noise",
+    "settings": "creatingspace:mars_noise",
     "biome_source": {
       "type": "minecraft:fixed",
-      "biome": "creatingspace:moon_plains"
+      "biome": "creatingspace:mars_plains"
     }
   }
 }

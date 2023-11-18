@@ -5,7 +5,7 @@
   "ore_veins_enabled": true,
   "legacy_random_source": false,
   "default_block": {
-    "Name": "creatingspace:moon_stone"
+    "Name": "creatingspace:mars_stone"
   },
   "default_fluid": {
     "Name": "minecraft:air"
@@ -365,7 +365,7 @@
         "then_run": {
           "type": "minecraft:block",
           "result_state": {
-            "Name": "creatingspace:moon_surface_regolith"
+            "Name": "creatingspace:mars_surface_regolith"
           }
         }
       },
@@ -384,7 +384,7 @@
             "then_run": {
               "type": "minecraft:block",
               "result_state": {
-                "Name": "creatingspace:moon_regolith"
+                "Name": "creatingspace:mars_regolith"
               }
             }
           }
@@ -393,7 +393,7 @@
       {
         "type": "minecraft:block",
         "result_state": {
-          "Name": "creatingspace:moon_stone"
+          "Name": "creatingspace:mars_stone"
         }
       }
     ]
