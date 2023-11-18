@@ -1,7 +1,6 @@
 package com.rae.creatingspace.init;
 
 import com.rae.creatingspace.CreatingSpace;
-import com.simibubi.create.Create;
 import com.simibubi.create.foundation.damageTypes.DamageTypeData;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.tags.DamageTypeTags;
@@ -13,6 +12,10 @@ public class DamageSourceInit {
 
     public static final DamageTypeData NO_OXYGEN = DamageTypeData.builder()
             .simpleId(resource("no_oxygen"))
+            .tag(DamageTypeTags.BYPASSES_ARMOR)
+            .build();
+    public static final DamageTypeData OVERHEAT = DamageTypeData.builder()
+            .simpleId(resource("overheat"))
             .tag(DamageTypeTags.BYPASSES_ARMOR)
             .build();
 

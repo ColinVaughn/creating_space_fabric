@@ -3,6 +3,7 @@ package com.rae.creatingspace.server.event;
 import com.rae.creatingspace.CreatingSpace;
 import com.rae.creatingspace.init.DamageSourceInit;
 import com.rae.creatingspace.init.TagsInit;
+import com.rae.creatingspace.init.ingameobject.ItemInit;
 import com.rae.creatingspace.init.worldgen.DimensionInit;
 import com.rae.creatingspace.server.armor.OxygenBacktankUtil;
 import com.rae.creatingspace.server.blocks.atmosphere.OxygenBlock;
@@ -71,6 +72,30 @@ public class CSEventHandler {
                 }
             }
         }
+        if (entityLiving.tickCount % 20 == 0) {
+            if (!isInO2(entityLiving) && entityLiving.isAttackable()) {
+                if (entityLiving instanceof ServerPlayer) {
+                    ServerPlayer player = (ServerPlayer) entityLiving;
+                    if (playerNeedEquipment(player)&&player.level().dimension().location().toString().equals("creatingspace:venus")) {
+                        if (checkPlayerHasRequiredSuit(player)) {
+                            //TODO ADD SOME TYPE OF RECHARGEABLE THING FOR HEAT SHIELD/AC
+                            // ItemStack tank = player.getItemBySlot(EquipmentSlot.CHEST);
+                             //OxygenBacktankUtil.consumeBattery(player, tank, 1);
+                        } else {
+                            if (!checkPlayerHasRequiredSuit(player)) {
+                                player.hurt(DamageSourceInit.OVERHEAT.source(level), 0.5f);
+                            }
+                        }
+                    }
+                } else if (!(TagsInit.CustomEntityTag.SPACE_CREATURES.matches(entityLiving))) {
+                    entityLiving.hurt(DamageSourceInit.OVERHEAT.source(level), 0.5f);
+                }
+            }
+        }
+
+
+
+
     }
 
     public static boolean checkPlayerO2Equipment(ServerPlayer player){
@@ -89,6 +114,21 @@ public class CSEventHandler {
 
         return false;
     }
+    public static boolean checkPlayerHasRequiredSuit(ServerPlayer player) {
+        ItemStack chestPlate = player.getItemBySlot(EquipmentSlot.CHEST);
+        ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
+        ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
+        ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
+
+        boolean hasRequiredSuit = chestPlate.is(ItemInit.NETHERITE_OXYGEN_BACKTANK.asItem()) &&
+                helmet.is(ItemInit.ADVANCED_SPACESUIT_HELMET.asItem()) &&
+                leggings.is(ItemInit.ADVANCED_SPACESUIT_LEGGINGS.asItem()) &&
+                boots.is(ItemInit.ADVANCED_SPACESUIT_BOOTS.asItem());
+        return hasRequiredSuit;
+    }
+
+
+
 
     public static boolean playerNeedEquipment(ServerPlayer player){
         return !player.isCreative();
