@@ -19,6 +19,8 @@ public abstract class CustomDimensionEffects extends DimensionSpecialEffects {
     private static final ResourceLocation SPACE_SKY_LOCATION = new ResourceLocation(CreatingSpace.MODID, "textures/environment/space_sky.png");
     private static final ResourceLocation EARTH_LOCATION = new ResourceLocation(CreatingSpace.MODID, "textures/environment/earth.png");
     private static final ResourceLocation MOON_LOCATION = new ResourceLocation(CreatingSpace.MODID, "textures/environment/moon.png");
+    private static final ResourceLocation MARS_LOCATION = new ResourceLocation(CreatingSpace.MODID, "textures/environment/mars.png");
+
 
     private static final ResourceLocation SUN_LOCATION = new ResourceLocation("textures/environment/sun.png");
     private static final ResourceLocation MOON_PHASES_LOCATION = new ResourceLocation("textures/environment/moon_phases.png");
@@ -140,7 +142,19 @@ public abstract class CustomDimensionEffects extends DimensionSpecialEffects {
 
         }
     }
+    @OnlyIn(Dist.CLIENT)
+    public static class MarsOrbitEffects extends GenericCelestialOrbitEffect {
+        public MarsOrbitEffects() {
+            super(MARS_LOCATION);
+        }
 
+        @Override
+        protected void renderAdditionalBodyEffects(PoseStack poseStack, Camera camera, ResourceLocation bodyTexture) {
+            // Render Mars-specific effects
+            // ...
+
+        }
+    }
 
 
     @OnlyIn(Dist.CLIENT)

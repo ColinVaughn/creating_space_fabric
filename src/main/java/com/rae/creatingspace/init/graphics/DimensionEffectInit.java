@@ -33,7 +33,7 @@ public class DimensionEffectInit {
 
         // Register Mars Orbit Effects
         ResourceLocation marsOrbitLocation = DimensionInit.MARS_ORBIT_TYPE.location();
-        CustomDimensionEffects.MoonOrbitEffect marsOrbitEffect = new CustomDimensionEffects.MoonOrbitEffect();
+        CustomDimensionEffects.MarsOrbitEffects marsOrbitEffect = new CustomDimensionEffects.MarsOrbitEffects();
         registerDimensionEffects(event, marsOrbitLocation, marsOrbitEffect, true);
 
         // Register Mars Effects

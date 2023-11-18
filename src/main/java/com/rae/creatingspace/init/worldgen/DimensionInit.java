@@ -29,6 +29,14 @@ public class DimensionInit {
             ResourceKey.create(Registries.DIMENSION,
                     new ResourceLocation(CreatingSpace.MODID,"the_moon"));
 
+    public static final ResourceKey<Level> VENUS_ORBIT_KEY =
+            ResourceKey.create(Registries.DIMENSION,
+                    new ResourceLocation(CreatingSpace.MODID,"venus"));
+
+    public static final ResourceKey<Level> VENUS_KEY =
+            ResourceKey.create(Registries.DIMENSION,
+                    new ResourceLocation(CreatingSpace.MODID,"venus"));
+
     public static final ResourceKey<Level> MARS_ORBIT_KEY =
             ResourceKey.create(Registries.DIMENSION,
                     new ResourceLocation(CreatingSpace.MODID,"mars_orbit"));
@@ -55,6 +63,13 @@ public class DimensionInit {
     public static final ResourceKey<DimensionType> MARS_TYPE =
             ResourceKey.create(Registries.DIMENSION_TYPE,
                     new ResourceLocation(CreatingSpace.MODID,"mars"));
+    public static final ResourceKey<DimensionType> VENUS_ORBIT_TYPE =
+            ResourceKey.create(Registries.DIMENSION_TYPE,
+                    new ResourceLocation(CreatingSpace.MODID,"venus_orbit"));
+
+    public static final ResourceKey<DimensionType> VENUS_TYPE =
+            ResourceKey.create(Registries.DIMENSION_TYPE,
+                    new ResourceLocation(CreatingSpace.MODID,"venus"));
     public static double SpaceSpawnHeight = 64; //make the rocket came from the top rather than hard tp -> for future version
     public static double PlanetSpawnHeight = 200;
 
