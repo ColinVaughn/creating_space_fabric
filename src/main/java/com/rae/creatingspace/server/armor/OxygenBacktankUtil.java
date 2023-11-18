@@ -111,8 +111,6 @@ public class OxygenBacktankUtil {
 	public static int maxOxygenWithoutEnchants() {
 		return AllConfigs.server().equipment.airInBacktank.get();
 	}
-
-
 	/**
 	 * Use this method to add custom entry points to the backtank item stack supplier, e.g. getting them from custom
 	 * slots or items.
