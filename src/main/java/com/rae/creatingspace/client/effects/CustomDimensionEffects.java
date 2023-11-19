@@ -21,6 +21,7 @@ public abstract class CustomDimensionEffects extends DimensionSpecialEffects {
     private static final ResourceLocation MOON_LOCATION = new ResourceLocation(CreatingSpace.MODID, "textures/environment/moon.png");
     private static final ResourceLocation MARS_LOCATION = new ResourceLocation(CreatingSpace.MODID, "textures/environment/mars.png");
 
+    private static final ResourceLocation SATURN_LOCATION = new ResourceLocation(CreatingSpace.MODID, "textures/environment/saturn.png");
 
     private static final ResourceLocation SUN_LOCATION = new ResourceLocation("textures/environment/sun.png");
     private static final ResourceLocation MOON_PHASES_LOCATION = new ResourceLocation("textures/environment/moon_phases.png");
