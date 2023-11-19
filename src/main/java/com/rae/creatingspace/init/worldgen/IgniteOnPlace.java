@@ -6,17 +6,30 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 ;
 
 @Mod.EventBusSubscriber(modid = CreatingSpace.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class IgniteOnPlace {
-
+    static Set<Block> dirtLikeBlocks = new HashSet<>(Arrays.asList(
+            Blocks.DIRT,
+            Blocks.GRASS_BLOCK,
+            Blocks.PODZOL,
+            Blocks.MYCELIUM,
+            Blocks.ROOTED_DIRT,
+            Blocks.COARSE_DIRT
+    ));
     @SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
 
@@ -46,12 +59,13 @@ public class IgniteOnPlace {
                     }
 
                 }
-                if (blockState.is(Blocks.DIRT) || blockState.is(Blocks.GRASS_BLOCK) || blockState.is(Blocks.PODZOL) || blockState.is(Blocks.MYCELIUM)) {
+                if (dirtLikeBlocks.contains(blockState.getBlock())) {
                     world.setBlockAndUpdate(pos, Blocks.SOUL_SAND.defaultBlockState());
                 }
-                if (blockState.is(Blocks.OAK_SAPLING)) {
+                if (blockState.getBlock() instanceof SaplingBlock) {
                     world.setBlockAndUpdate(pos, Blocks.DEAD_BUSH.defaultBlockState());
                 }
+
             }
         }
 
