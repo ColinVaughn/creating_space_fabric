@@ -10,6 +10,7 @@ import com.rae.creatingspace.init.graphics.DimensionEffectInit;
 import com.rae.creatingspace.init.graphics.ParticleTypeInit;
 import com.rae.creatingspace.init.ingameobject.*;
 import com.rae.creatingspace.init.worldgen.DimensionInit;
+import com.rae.creatingspace.init.worldgen.IgniteOnPlace;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.TagGen;
 import com.simibubi.create.infrastructure.config.AllConfigs;
@@ -51,7 +52,7 @@ public class CreatingSpace {
         ParticleTypeInit.register(bus);
 
         DimensionInit.register(bus);
-
+        IgniteOnPlace.register();
         PaintingInit.register(bus);
 
         PonderInit.register();
