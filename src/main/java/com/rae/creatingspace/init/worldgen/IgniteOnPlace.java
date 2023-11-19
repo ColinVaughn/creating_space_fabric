@@ -49,6 +49,9 @@ public class IgniteOnPlace {
                 if (blockState.is(Blocks.DIRT) || blockState.is(Blocks.GRASS_BLOCK) || blockState.is(Blocks.PODZOL) || blockState.is(Blocks.MYCELIUM)) {
                     world.setBlockAndUpdate(pos, Blocks.SOUL_SAND.defaultBlockState());
                 }
+                if (blockState.is(Blocks.OAK_SAPLING)) {
+                    world.setBlockAndUpdate(pos, Blocks.DEAD_BUSH.defaultBlockState());
+                }
             }
         }
 
