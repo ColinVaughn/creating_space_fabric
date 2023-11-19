@@ -77,15 +77,10 @@ public class CSEventHandler {
                 if (entityLiving instanceof ServerPlayer) {
                     ServerPlayer player = (ServerPlayer) entityLiving;
                     if (playerNeedEquipment(player)&&player.level().dimension().location().toString().equals("creatingspace:venus")) {
-                        if (checkPlayerHasRequiredSuit(player)) {
-                            //TODO ADD SOME TYPE OF RECHARGEABLE THING FOR HEAT SHIELD/AC
-                            // ItemStack tank = player.getItemBySlot(EquipmentSlot.CHEST);
-                             //OxygenBacktankUtil.consumeBattery(player, tank, 1);
-                        } else {
                             if (!checkPlayerHasRequiredSuit(player)) {
                                 player.hurt(DamageSourceInit.OVERHEAT.source(level), 0.5f);
                             }
-                        }
+
                     }
                 } else if (!(TagsInit.CustomEntityTag.SPACE_CREATURES.matches(entityLiving))) {
                     entityLiving.hurt(DamageSourceInit.OVERHEAT.source(level), 0.5f);
