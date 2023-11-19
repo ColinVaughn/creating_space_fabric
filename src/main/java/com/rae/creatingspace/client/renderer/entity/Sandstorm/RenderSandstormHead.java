@@ -1,7 +1,9 @@
 package com.rae.creatingspace.client.renderer.entity.Sandstorm;
 
+import com.github.alexthe666.citadel.client.model.AdvancedEntityModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.rae.creatingspace.client.renderer.entity.Sandstorm.Model.ModelSandstorm;
 import com.rae.creatingspace.server.entities.EntitySandstormHead;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -14,7 +16,7 @@ public class RenderSandstormHead extends MobRenderer<EntitySandstormHead, Advanc
     private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/cave_centipede.png");
 
     public RenderSandstormHead(EntityRendererProvider.Context renderManagerIn) {
-        super(renderManagerIn, new ModelCaveCentipede<>(0), 0.5F);
+        super(renderManagerIn, new ModelSandstorm<>(0), 0.5F);
     }
 
     @Override

@@ -1,34 +1,20 @@
 package com.rae.creatingspace;
 
 
-import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.rae.creatingspace.client.renderer.entity.Sandstorm.RenderSandstormBody;
 import com.rae.creatingspace.client.renderer.entity.Sandstorm.RenderSandstormHead;
+import com.rae.creatingspace.client.renderer.entity.Sandstorm.RenderSandstormTail;
 import com.rae.creatingspace.init.ingameobject.EntityInit;
-import com.rae.creatingspace.server.entities.EntitySandstormHead;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.ModelEvent;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -59,10 +45,9 @@ public class ClientProxy extends CommonProxy {
     }
 
     public void clientInit() {
-        ItemRenderer itemRendererIn = Minecraft.getInstance().getItemRenderer();
         EntityRenderers.register(EntityInit.SANDSTORM_HEAD.get(), RenderSandstormHead::new);
         EntityRenderers.register(EntityInit.SANDSTORM_BODY.get(), RenderSandstormBody::new);
-        EntityRenderers.register(EntityInit.SANDSTORM_TAIL.get(), RenderCentipedeTail::new);
+        EntityRenderers.register(EntityInit.SANDSTORM_TAIL.get(), RenderSandstormTail::new);
 
     }
 

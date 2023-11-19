@@ -1,5 +1,6 @@
 package com.rae.creatingspace.server.entities;
 
+import com.rae.creatingspace.CreatingSpace;
 import com.rae.creatingspace.utilities.CSBlockPos;
 import com.rae.creatingspace.utilities.message.MessageHurtMultipart;
 import net.minecraft.core.BlockPos;
@@ -41,7 +42,7 @@ public class EntitySandstormBody extends Mob implements IHurtableMultipart {
     protected float angleYaw;
     protected float damageMultiplier = 1;
     private double prevHeight = 0;
-    protected EntitySandstormBody(EntityType type, Level worldIn) {
+    public EntitySandstormBody(EntityType type, Level worldIn) {
         super(type, worldIn);
         multipartSize = type.getDimensions();
     }
@@ -75,7 +76,7 @@ public class EntitySandstormBody extends Mob implements IHurtableMultipart {
             if (parent != null && !this.level().isClientSide) {
                 if (parent instanceof final LivingEntity parentEntity) {
                     if ((parentEntity.hurtTime > 0 || parentEntity.deathTime > 0)) {
-                        AlexsMobs.sendMSGToAll(new MessageHurtMultipart(this.getId(), parent.getId(), 0));
+                        CreatingSpace.sendMSGToAll(new MessageHurtMultipart(this.getId(), parent.getId(), 0));
                         this.hurtTime = parentEntity.hurtTime;
                         this.deathTime = parentEntity.deathTime;
                     }
@@ -167,7 +168,7 @@ public class EntitySandstormBody extends Mob implements IHurtableMultipart {
         final Entity parent = getParent();
         final boolean prev = parent != null && parent.hurt(source, damage * this.damageMultiplier);
         if (prev && !this.level().isClientSide) {
-            AlexsMobs.sendMSGToAll(new MessageHurtMultipart(this.getId(), parent.getId(), damage * this.damageMultiplier));
+            CreatingSpace.sendMSGToAll(new MessageHurtMultipart(this.getId(), parent.getId(), damage * this.damageMultiplier));
         }
         return prev;
     }

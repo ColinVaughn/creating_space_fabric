@@ -1,19 +1,21 @@
 package com.rae.creatingspace.client.renderer.entity.Sandstorm;
 
+import com.github.alexthe666.citadel.client.model.AdvancedEntityModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.rae.creatingspace.client.renderer.entity.Sandstorm.Model.ModelSandstorm;
 import com.rae.creatingspace.server.entities.EntitySandstormTail;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Pose;
-
 public class RenderSandstormTail extends MobRenderer<EntitySandstormTail, AdvancedEntityModel<EntitySandstormTail>> {
     private static final ResourceLocation TEXTURE = new ResourceLocation("alexsmobs:textures/entity/cave_centipede.png");
 
     public RenderSandstormTail(EntityRendererProvider.Context renderManagerIn) {
-        super(renderManagerIn, new ModelCaveCentipede<>(2), 0.5F);
+        super(renderManagerIn, new ModelSandstorm<>(2), 0.5F);
     }
 
     protected float getFlipDegrees(EntitySandstormTail centipede) {
