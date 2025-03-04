@@ -1,6 +1,6 @@
 package com.rae.creatingspace.mixin.entity.gravity;
 
-import com.rae.creatingspace.utilities.CSDimensionUtil;
+import com.rae.creatingspace.content.planets.CSDimensionUtil;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.Boat;
@@ -17,6 +17,10 @@ public abstract class BoatMixin extends Entity {
 
     @ModifyVariable(method = "floatBoat", at = @At(value = "LOAD"), name = "d1")
     private double modifyGravity(double d1) {
-        return d1 * CSDimensionUtil.gravity(level().dimension().location()) / 9.81;
+        if (!level.dimension().location().getNamespace().equals("ad_astra")) {
+            return d1 * CSDimensionUtil.gravity(level.dimension().location()) / 9.81;
+        }
+        return d1;
     }
+
 }

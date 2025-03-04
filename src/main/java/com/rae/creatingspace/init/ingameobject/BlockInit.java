@@ -1,32 +1,40 @@
 package com.rae.creatingspace.init.ingameobject;
 
-import com.rae.creatingspace.init.CreativeModeTabsInit;
+import com.rae.creatingspace.content.fluids.meter.FlowGaugeBlock;
+import com.rae.creatingspace.content.fluids.storage.CryogenicTankBlock;
+import com.rae.creatingspace.content.planets.RegolithSurfaceBlock;
+import com.rae.creatingspace.content.recipes.air_liquefying.AirLiquefierBlock;
+import com.rae.creatingspace.content.recipes.chemical_synthesis.CatalystCarrierBlock;
+import com.rae.creatingspace.content.recipes.electrolysis.MechanicalElectrolyzerBlock;
+import com.rae.creatingspace.content.rocket.engine.table.RocketEngineerTableBlock;
+import com.rae.creatingspace.content.rocket.flight_recorder.FlightRecorderBlock;
+import com.rae.creatingspace.content.rocket.rocket_control.RocketControlsBlock;
 import com.rae.creatingspace.init.graphics.SpriteShiftInit;
-import com.rae.creatingspace.server.armor.OxygenBacktankBlock;
-import com.rae.creatingspace.server.blocks.*;
-import com.rae.creatingspace.server.blocks.atmosphere.OxygenBlock;
-import com.rae.creatingspace.server.blocks.atmosphere.RoomPressuriserBlock;
-import com.rae.creatingspace.server.blocks.atmosphere.SealerBlock;
-import com.rae.creatingspace.server.blocks.multiblock.BigRocketStructuralBlock;
-import com.rae.creatingspace.server.blocks.multiblock.SmallRocketStructuralBlock;
-import com.rae.creatingspace.server.blocks.multiblock.SuperRocketStructuralBlock;
-import com.rae.creatingspace.server.blocks.multiblock.engines.BigEngineBlock;
-import com.rae.creatingspace.server.blocks.multiblock.engines.SmallEngineBlock;
-import com.rae.creatingspace.server.blocks.multiblock.engines.SuperEngineBlock;
-import com.rae.creatingspace.server.contraption.behaviour.interaction.FlightRecorderInteraction;
-import com.rae.creatingspace.server.contraption.behaviour.interaction.RocketControlInteraction;
-import com.rae.creatingspace.server.contraption.behaviour.movement.EngineMovementBehaviour;
-import com.rae.creatingspace.server.items.CryogenicTankItem;
-import com.rae.creatingspace.server.items.engine.BigEngineItem;
-import com.rae.creatingspace.server.items.engine.EngineItem;
-import com.rae.creatingspace.server.items.engine.SmallEngineItem;
+import com.rae.creatingspace.content.life_support.spacesuit.OxygenBacktankBlock;
+import com.rae.creatingspace.legacy.server.blocks.ChemicalSynthesizerBlock;
+import com.rae.creatingspace.legacy.server.blocks.LegacyMechanicalElectrolyzerBlock;
+import com.rae.creatingspace.legacy.server.blocks.RocketGeneratorBlock;
+import com.rae.creatingspace.legacy.server.blocks.atmosphere.OxygenBlock;
+import com.rae.creatingspace.legacy.server.blocks.atmosphere.SealerBlock;
+import com.rae.creatingspace.legacy.server.blocks.multiblock.BigRocketStructuralBlock;
+import com.rae.creatingspace.legacy.server.blocks.multiblock.SmallRocketStructuralBlock;
+import com.rae.creatingspace.content.rocket.engine.SuperRocketStructuralBlock;
+import com.rae.creatingspace.legacy.server.blocks.multiblock.engines.BigEngineBlock;
+import com.rae.creatingspace.legacy.server.blocks.multiblock.engines.SmallEngineBlock;
+import com.rae.creatingspace.content.rocket.engine.RocketEngineBlock;
+import com.rae.creatingspace.content.rocket.contraption.behaviour.interaction.FlightRecorderInteraction;
+import com.rae.creatingspace.content.rocket.contraption.behaviour.interaction.RocketControlInteraction;
+import com.rae.creatingspace.content.rocket.contraption.behaviour.movement.EngineMovementBehaviour;
+import com.rae.creatingspace.content.fluids.storage.CryogenicTankItem;
+import com.rae.creatingspace.legacy.server.items.BigEngineItem;
+import com.rae.creatingspace.content.rocket.engine.EngineItem;
+import com.rae.creatingspace.legacy.server.items.SmallEngineItem;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
 import com.simibubi.create.foundation.data.*;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.*;
@@ -60,8 +68,8 @@ public class BlockInit {
             .item(SmallEngineItem::new)
             .transform(customItemModel())
             .register();
-    public static final BlockEntry<SuperEngineBlock> ROCKET_ENGINE = REGISTRATE
-            .block("rocket_engine", SuperEngineBlock::new)
+    public static final BlockEntry<RocketEngineBlock> ROCKET_ENGINE = REGISTRATE
+            .block("rocket_engine", RocketEngineBlock::new)
             //.initialProperties(SharedProperties::copperMetal)
             .properties(p -> p.strength(1.0f).dynamicShape().noOcclusion())
 

@@ -1,20 +1,23 @@
 package com.rae.creatingspace;
 
 import com.mojang.logging.LogUtils;
-import com.rae.creatingspace.api.design.ExhaustPackType;
-import com.rae.creatingspace.api.design.PowerPackType;
-import com.rae.creatingspace.api.design.PropellantType;
+import com.rae.creatingspace.content.rocket.engine.design.ExhaustPackType;
+import com.rae.creatingspace.content.rocket.engine.design.PowerPackType;
+import com.rae.creatingspace.content.rocket.engine.design.PropellantType;
 import com.rae.creatingspace.api.planets.RocketAccessibleDimension;
 import com.rae.creatingspace.configs.CSConfigs;
+import com.rae.creatingspace.content.datagen.CSDatagen;
 import com.rae.creatingspace.init.*;
 import com.rae.creatingspace.init.graphics.MenuTypesInit;
 import com.rae.creatingspace.init.graphics.ParticleTypeInit;
 import com.rae.creatingspace.init.ingameobject.*;
 import com.rae.creatingspace.init.worldgen.CarverInit;
-import com.rae.creatingspace.saved.UnlockedDesignManager;
-import com.rae.creatingspace.server.contraption.CSContraptionType;
-import com.rae.creatingspace.server.event.IgniteOnPlace;
-import com.rae.creatingspace.utilities.data.MassOfBlockReader;
+import com.rae.creatingspace.init.worldgen.DensityFunctionInit;
+import com.rae.creatingspace.init.worldgen.FeatureInit;
+import com.rae.creatingspace.legacy.saved.UnlockedDesignManager;
+import com.rae.creatingspace.init.CSContraptionType;
+import com.rae.creatingspace.content.event.IgniteOnPlace;
+import com.rae.creatingspace.legacy.utilities.data.MassOfBlockReader;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
@@ -74,7 +77,7 @@ public class CreatingSpace {
         PaintingInit.register(modEventBus);
         RecipeInit.register(modEventBus);
         ParticleTypeInit.register(modEventBus);
-        CarverInit.register(modEventBus);
+
         EntityDataSerializersInit.register(modEventBus);
         MiscInit.register(modEventBus);
         CreativeModeTabsInit.register(modEventBus);
@@ -85,14 +88,19 @@ public class CreatingSpace {
         PacketInit.registerPackets();
         IgniteOnPlace.register();
 
+        CarverInit.register(modEventBus);
+        DensityFunctionInit.register(modEventBus);
+
+        FeatureInit.register(modEventBus);
 
         CSContraptionType.prepare();
 
         modEventBus.addListener(CreatingSpace::init);
         modEventBus.addListener(EventPriority.LOWEST, CSDatagen::gatherData);
-
         forgeEventBus.addListener(CreatingSpace::onAddReloadListeners);
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->  CreatingSpaceClient.clientRegister(modEventBus));
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->  CreatingSpaceClient.clientRegister(modEventBus,forgeEventBus));
+
+
 
     }
     public static void init(final FMLCommonSetupEvent event) {

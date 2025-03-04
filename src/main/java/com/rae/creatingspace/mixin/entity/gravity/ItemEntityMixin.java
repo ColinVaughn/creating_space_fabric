@@ -1,6 +1,6 @@
 package com.rae.creatingspace.mixin.entity.gravity;
 
-import com.rae.creatingspace.utilities.CSDimensionUtil;
+import com.rae.creatingspace.content.planets.CSDimensionUtil;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -18,6 +18,8 @@ public abstract class ItemEntityMixin extends Entity {
 
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V", ordinal = 0, shift = At.Shift.AFTER))
     public void gravity(CallbackInfo ci) {
-        this.setDeltaMovement(getDeltaMovement().add(0, 0.04D - 0.04D * CSDimensionUtil.gravity(level().dimension().location()) / 9.81, 0));
+        if (!level.dimension().location().getNamespace().equals("ad_astra")) {
+            this.setDeltaMovement(getDeltaMovement().add(0, 0.04D - 0.04D * CSDimensionUtil.gravity(level.dimension().location()) / 9.81, 0));
+        }
     }
 }
