@@ -1,13 +1,12 @@
 package com.rae.creatingspace.content.rocket.engine;
 
 import com.rae.creatingspace.content.rocket.engine.design.PropellantType;
-import com.rae.creatingspace.init.ingameobject.BlockInit;
 import com.rae.creatingspace.init.ingameobject.PropellantTypeInit;
-import com.rae.creatingspace.legacy.server.blocks.multiblock.SmallRocketStructuralBlock;
-import com.rae.creatingspace.legacy.server.blocks.multiblock.engines.RocketEngineBlock;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.chat.Component;
@@ -115,13 +114,4 @@ public class EngineItem extends RocketEngineItem {
         }
         super.appendHoverText(itemStack, level, components, flag);
     }
-
-    /*@Override
-    public void fillItemCategory(CreativeModeTab modeTab, NonNullList<ItemStack> itemStacks) {
-        if (this.allowedIn(modeTab)) {
-            itemStacks.add(
-                    getItemStackFromInfo((int) (50000f * 9.81f), 0.9f, 1000, PropellantTypeInit.LH2LOX.getId())
-            );
-        }
-    }*/
 }

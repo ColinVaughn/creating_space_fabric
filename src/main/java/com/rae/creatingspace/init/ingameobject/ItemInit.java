@@ -1,6 +1,8 @@
 package com.rae.creatingspace.init.ingameobject;
 
 import com.rae.creatingspace.CreatingSpace;
+import com.rae.creatingspace.content.recipes.chemical_synthesis.CatalystItem;
+import com.rae.creatingspace.content.recipes.electrolysis.ElectrodeItem;
 import com.rae.creatingspace.init.EngineMaterialInit;
 import com.rae.creatingspace.init.TagsInit;
 import com.rae.creatingspace.content.life_support.spacesuit.OxygenBacktankItem;
@@ -10,6 +12,7 @@ import com.rae.creatingspace.content.rocket.engine.table.EngineFabricationBluepr
 import com.simibubi.create.content.equipment.armor.AllArmorMaterials;
 import com.simibubi.create.content.equipment.armor.BaseArmorItem;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
+import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.item.CombustibleItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -105,6 +108,21 @@ public class ItemInit {
                         name, SequencedAssemblyItem::new)
                 .register();
     }
+
+
+    public static final ItemEntry<ElectrodeItem> COPPER_ELECTRODE = CreatingSpace.REGISTRATE.item(
+                    "copper_electrode", ElectrodeItem::new)
+            .properties(p -> p.stacksTo(1)
+                    .defaultDurability(300))
+            .model(AssetLookup.existingItemModel())
+            .register();
+
+    public static final ItemEntry<CatalystItem> COPPER_CATALYST = CreatingSpace.REGISTRATE.item(
+                    "copper_catalyst", CatalystItem::new)
+            .properties(p -> p.stacksTo(1)
+                    .defaultDurability(300))
+            .model(AssetLookup.existingItemModel())
+            .register();
 
 
     public static final ItemEntry<DesignBlueprintItem> DESIGN_BLUEPRINT =

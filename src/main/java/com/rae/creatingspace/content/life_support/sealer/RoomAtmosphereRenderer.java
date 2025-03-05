@@ -23,6 +23,9 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ConcurrentModificationException;
+import java.util.List;
+
 public class RoomAtmosphereRenderer extends EntityRenderer<RoomAtmosphere> {
     private static final ResourceLocation ROOM_ATMOSPHERE_LOCATION = CreatingSpace.resource("textures/entity/room_atmosphere_overlay.png");
     private static final RenderType RENDER_TYPE = RenderType.entityTranslucent(ROOM_ATMOSPHERE_LOCATION);

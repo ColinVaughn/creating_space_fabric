@@ -3,6 +3,8 @@ package com.rae.creatingspace.init.ingameobject;
 
 import com.rae.creatingspace.CreatingSpace;
 import com.rae.creatingspace.init.TagsInit;
+import com.rae.creatingspace.content.fluids.CSOpenEndedPipe;
+import com.rae.creatingspace.content.fluids.CustomVirtualFluid;
 import com.simibubi.create.AllFluids;
 import com.simibubi.create.content.fluids.OpenEndedPipe;
 import com.simibubi.create.content.fluids.VirtualFluid;
@@ -44,7 +46,7 @@ public class FluidInit {
                 customStill(name),
                 customFlowing(name),
                 CreateRegistrate::defaultFluidType,
-                VirtualFluid::new);
+                CustomVirtualFluid::new);
     }
 
     public static final FluidEntry<VirtualFluid> LIQUID_METHANE =
@@ -61,7 +63,7 @@ public class FluidInit {
                           /*fogColor(0.75f,0.21f,0.5f))*/
     public static final FluidEntry<VirtualFluid> LIQUID_OXYGEN =
             registrateCustomVirtualLiquid("liquid_oxygen")
-                    .properties(p -> p.viscosity(1000).temperature(90).density(1141))
+                    .properties(p -> p.viscosity(1000).temperature(90).density(1000))
                     .tag(TagsInit.CustomFluidTags.LIQUID_OXYGEN.tag)
                     .register();
     /*public static final ItemEntry<BucketItem> CREATIVE_BUCKET_OXYGEN =
@@ -101,31 +103,7 @@ public class FluidInit {
 
     public static void register() {}
     public static void registerOpenEndedEffect() {
-        OpenEndedPipe.registerEffectHandler(new CryogenicLiquidEffectHandler());
-    }
-    public static class CryogenicLiquidEffectHandler implements OpenEndedPipe.IEffectHandler {
-        @Override
-        public boolean canApplyEffects(OpenEndedPipe pipe, FluidStack fluid) {
-            return fluid.getFluid().getFluidType().getTemperature() < 100;
-        }
-
-        @Override
-        public void applyEffects(OpenEndedPipe pipe, FluidStack fluid) {
-            Level world = pipe.getWorld();
-            if (world.getGameTime() % 5 != 0)
-                return;
-            List<LivingEntity> entities =
-                    world.getEntitiesOfClass(LivingEntity.class, pipe.getAOE(), LivingEntity::isAlive);
-
-            for (LivingEntity entity : entities) {
-                entity.setIsInPowderSnow(true);
-                if (world.isClientSide) {
-                    RandomSource randomsource = world.getRandom();
-
-                    world.addParticle(ParticleTypes.SNOWFLAKE, entity.getX(), (entity.getY() + 1), entity.getZ(), (Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F), 0.05F, (Mth.randomBetween(randomsource, -1.0F, 1.0F) * 0.083333336F));
-                }
-            }
-        }
+        OpenEndedPipe.registerEffectHandler(new CSOpenEndedPipe.CryogenicLiquidEffectHandler());
     }
 
     public static void registerFluidInteractions() {

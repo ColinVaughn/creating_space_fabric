@@ -31,9 +31,9 @@ public class CustomTeleporter implements ITeleporter {
         if ( entity instanceof RocketContraptionEntity rocketContraptionEntity){
 
             position = new Vec3(
-                    rocketContraptionEntity.rocketEntryCoordinate.getX(),
+                    rocketContraptionEntity.nextPath.XZCoord.x,
                     height,
-                    rocketContraptionEntity.rocketEntryCoordinate.getZ());
+                    rocketContraptionEntity.nextPath.XZCoord.y);
 
         }
         else {

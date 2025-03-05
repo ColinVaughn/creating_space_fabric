@@ -99,7 +99,7 @@ public class ScheduleMakingScreen extends AbstractSimiContainerScreen<RocketMenu
 
         //everything else
         //end of schedule logic
-        Button disassembleButton = new Button(120, y + 201, TOP_BORDER_WIDTH * 4, 20,
+        Button disassembleButton = new ExtendedButton(120, y + 201, TOP_BORDER_WIDTH * 4, 20,
                 Component.translatable("creatingspace.gui.rocket_controls.disassemble"),
                 ($) -> {
 
@@ -111,46 +111,6 @@ public class ScheduleMakingScreen extends AbstractSimiContainerScreen<RocketMenu
         addRenderableWidget(disassembleButton);
         destinationCost = new LabeledBoxWidget(width - 97, y + 20, Component.literal("  500 "));
         destinationCost.setToolTip(Component.translatable("creatingspace.gui.rocket_controls.destination_cost"));
-        validateSetting = new IconButton(width - 45, y + 70, AllIcons.I_CONFIG_SAVE);
-        validateSetting.setToolTip(
-                Component.translatable("creatingspace.gui.rocket_controls.send_setting"));
-        validateSetting.withCallback(() -> {
-            BlockPos pos = initialPosMap.get(String.valueOf(destination));
-            if (pos == null) {
-                pos = this.rocketContraption.getOnPos();
-            }
-            String X = Xinput.getValue().replace(" ", ""),/*Y = Yinput.getValue().replace(" ",""),*/Z = Zinput.getValue().replace(" ", "");
-            if (CSUtil.isInteger(X)) {
-                pos = new BlockPos(Integer.parseInt(X), pos.getY(), pos.getZ());
-            } else {
-                Xinput.setValue(String.valueOf(pos.getX()));
-            }
-                    /*if (isInteger(Y)){
-                        pos = pos.mutable().setY(Integer.parseInt(Y)).immutable();
-                    }else {
-                        Yinput.setValue(String.valueOf(pos.getY()));
-                    }*/
-            if (CSUtil.isInteger(Z)) {
-                pos = pos.mutable().setZ(Integer.parseInt(Z)).immutable();
-            } else {
-                Zinput.setValue(String.valueOf(pos.getZ()));
-            }
-
-            initialPosMap.put(String.valueOf(destination), pos);
-            PacketInit.getChannel().sendToServer(RocketControlsSettingsPacket.sendSettings(this.rocketContraption.getOnPos(), initialPosMap));
-        });
-
-        Xinput = new EditBox(font, width - 100, y + 63,
-                50, 14, Component.literal(""));
-        /*Yinput = new EditBox(font,x + 169, y + 63,
-                50, 14, Component.literal(""));*/
-        Zinput = new EditBox(font, width - 100, y + 83,
-                50, 14, Component.literal(""));
-
-        addRenderableWidget(Xinput);
-        //addRenderableWidget(Yinput);
-        addRenderableWidget(Zinput);
-        addRenderableWidget(validateSetting);
         addRenderableWidget(destinationCost);
 
         cyclicIndicator = new Indicator(x + 21, y + 196, Components.immutableEmpty());
@@ -280,6 +240,18 @@ public class ScheduleMakingScreen extends AbstractSimiContainerScreen<RocketMenu
         skipProgress.active = schedule.entries.size() > 1;
     }
 
+    private void fillToolTip(IconButton button, String tooltipKey) {
+        if (!button.isHoveredOrFocused())
+            return;
+        List<Component> tip = button.getToolTip();
+
+        tip.addAll(TooltipHelper
+                .cutTextComponent(Component.translatable("creatingspace.gui.rocket_controls." + tooltipKey + ".description"), TooltipHelper.Palette.ALL_GRAY));
+    }
+    private void renderActionTooltip(@Nullable GuiGraphics graphics, List<Component> tooltip, int mx, int my) {
+        if (graphics != null)
+            graphics.renderTooltip(font, tooltip, Optional.empty(), mx, my);
+    }
     //schedule logic
     protected void renderSchedule(GuiGraphics graphics, float partialTicks) {
         PoseStack matrixStack = graphics.pose();
